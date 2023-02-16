@@ -1,5 +1,6 @@
 /* Basic Web Server */
-/* Node code runs once and sets up functions such as listeners*/
+/* Node code runs once and sets up functions such as listeners
+    Node is the save language as JavaScript*/
 /* const is one of the three main key words
     var - two issues: JavaScript is also a programming language as well as OOP 
     it's considered bad habit to create variables unless completely necessary.
