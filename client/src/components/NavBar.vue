@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-    const isMenuActive = false;
+import LoginBadge from './loginBadge.vue'
+    
+    const isMenuActive = ref(false);
+
+    function toggleMenu() {
+      isMenuActive.value = !isMenuActive.value;
+      console.log({ isMenuActive})
+    }
 </script>
 
 <template>
@@ -24,6 +32,7 @@ import { RouterLink } from 'vue-router';
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
+            <RouterLink to="/products" class="navbar-item">Products</RouterLink>
 
 
             <div class="navbar-item has-dropdown is-hoverable">
@@ -58,6 +67,8 @@ import { RouterLink } from 'vue-router';
           </div>
       
           <div class="navbar-end">
+            <LoginBadge />
+
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
@@ -88,4 +99,5 @@ import { RouterLink } from 'vue-router';
 
 
 <style scoped>
+
 </style>
