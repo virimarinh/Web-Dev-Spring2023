@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory , type NavigationGuardNext, type RouteLocationNormalized } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProductsVue from '@/views/Login.vue'
+import ProductsVue from '@/views/Product.vue'
 import LoginVue from '@/views/Login.vue'
 import { useSession } from '@/model/session'
 

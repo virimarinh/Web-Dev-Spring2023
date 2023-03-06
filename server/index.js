@@ -24,8 +24,9 @@ const server = http.createServer((req, res) => { /* Registering a function */
                         How do you send something to a message?*/
   res.setHeader('Content-Type', 'text/plain');
   res.end('Hello World');
-});
+
+} );
 /* listen - stops node from killing process*/
-server.listen(port, hostname, () =>   /* If your function is only one line (no {}) then the return value is that line */
+server.listen(port, () =>   /* If your function is only one line (no {}) then the return value is that line */
   console.log(`Server running at http://${hostname}:${port}/`) /* RETURN LINE This function means the funstion is done */
 );

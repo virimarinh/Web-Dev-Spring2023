@@ -17,12 +17,13 @@ const session = useSession();
                 <span class="icon">
                     <i class="fas fa-user"></i>
                 </span>
-                <strong>login</strong>
+                <strong>Login</strong>
             </a>
             <a class="button is-info">
                 <span class="icon">
                     <i class="fas fa-user-plus"></i>
                 </span>
+                <strong>Sign up</strong>
             </a>
         </div>
 </template>

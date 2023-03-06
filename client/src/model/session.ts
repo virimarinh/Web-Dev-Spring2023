@@ -1,4 +1,6 @@
-import { reactive } from "vue"
+/* B"H
+*/
+import { reactive } from "vue";
 
 const session = reactive({
     user: null as User | null,

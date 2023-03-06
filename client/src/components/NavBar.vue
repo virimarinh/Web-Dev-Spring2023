@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import LoginBadge from './loginBadge.vue'
+import LoginBadge from './loginBadge.vue';
     
     const isMenuActive = ref(false);
 
@@ -20,7 +20,7 @@ import LoginBadge from './loginBadge.vue'
             <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" />
             
           </a>
-          <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="isMenuActive = !isMenuActive" >
+          <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
             <span></span>
             <span></span>
             <span></span>
