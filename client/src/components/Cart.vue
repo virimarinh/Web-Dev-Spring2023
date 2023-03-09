@@ -39,14 +39,15 @@
         </h1>
         <p></p>
         <div class="cart-item" v-for="item in cart">
-            <img :scr="item.product.thumbnail" alt="product image">
+            <img :src="item.product.thumbnail" alt="product image" />
             <div>
                 <b>{{ item.product.title }}</b>
                 <p>
                     ${{ item.product.price }}
                     x {{ item.quantity }}
-                </p>
+                </p>            
             </div>
+
         </div>
     </div>
 </template>

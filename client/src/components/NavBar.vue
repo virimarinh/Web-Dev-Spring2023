@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import LoginBadge from './loginBadge.vue';
+import LoginBadge from './LoginBadge.vue';
     
     const isMenuActive = ref(false);
 
