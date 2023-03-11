@@ -1,59 +1,43 @@
 <script setup lang="ts">
-    import {useCart} from '@/model/cart';
-    import { getProducts } from '@/model/products';
-
-    const cart = useCart ();
-    const products = getProducts();
-
-    cart.value.push({
-        product: products[3],
-        productId: 3,
-        quantity:1,
-
-    })
-
-    cart.value.push({
-        product: products[13],
-        productId: 13,
-        quantity:4,
-        
-    })
-
-    cart.value.push({
-        product: products[23],
-        productId: 23,
-        quantity: 8,
-        
-    })
-
-</script> 
+    import { useCart, total, removeFromCart } from '@/model/cart';
+    const cart = useCart();
+    
+</script>
 
 <template>
     <div class="cart">
         <h1 class="title">
             Cart
             <small>
-                $613
+                ${{ total }}
                 ({{ cart.length }} items)
             </small>
         </h1>
         <p></p>
-        <div class="cart-item" v-for="item in cart">
+        <div class="cart-item" v-for="item, i in cart">
             <img :src="item.product.thumbnail" alt="product image" />
             <div>
                 <b>{{ item.product.title }}</b>
                 <p>
                     ${{ item.product.price }}
-                    x {{ item.quantity }}
+                    x 
+                    <select v-model="item.quantity" class="quantity-dropdown">
+                        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+                    </select>
                 </p>            
             </div>
-
+            <button class="button is-danger" @click="removeFromCart(i)">
+                <span class="icon">
+                    <i class="fas fa-trash"></i>
+                </span>
+            </button>
         </div>
     </div>
 </template>
 
+
 <style scoped>
-    .cart{
+    .cart {
         margin: 5px;
         display: flex;
         flex-direction: column;
@@ -69,13 +53,11 @@
         border-radius: 15px;
         overflow: hidden;
         background-color: lavenderblush;
-
     }
     .cart-item img {
         width: 100px;
         height: 100px;
     }
-
     small {
         font-size: 0.5em;
     }

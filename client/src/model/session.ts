@@ -1,6 +1,8 @@
-/* B"H
+/*  B"H
 */
+
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
 const session = reactive({
     user: null as User | null,
@@ -14,12 +16,23 @@ interface User {
     token?: string;
 }
 
-export function useSession(){
+export function useSession() {
     return session;
 }
 
-export function login(){
+export function login() {
     session.user = {
         name: "John Doe",
+    }
+}
+
+export function useLogout() {
+    const router = useRouter();
+    
+    return function(){
+        console.log({router});
+        session.user = null;
+
+        router.push("/login");
     }
 }

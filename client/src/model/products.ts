@@ -1,6 +1,7 @@
-/* B"H
+/*  B"H
 */
-import data from "../data/products.json"
+
+import data from "../data/products.json";
 
 export interface Product {
     id: number;
@@ -16,6 +17,6 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts():  Product[]{
-    return data.products
+export function getProducts(): Product[] {
+    return data.products;
 }
