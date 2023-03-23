@@ -14,12 +14,15 @@ app
 
 // Actions
 app
-    .get('/', (req, res) => {
+    .get('api/v1', (req, res) => {
         res.send('Hello World! From Express')
     })
-    .use('/products', products)
+    .use('api/v1/products', products)
 
-
+// Catch all
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+})
 
     app.listen(port, () => 
       console.log(`Server running at http://${hostname}:${port}/`)

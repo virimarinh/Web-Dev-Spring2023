@@ -1,11 +1,14 @@
 ###
-GET http://localhost:300/products
+GET http://localhost:300/
 
 ###
-GET http://localhost:300/products/1
+GET http://localhost:300/api/v1/products
 
 ###
-POST https://localhost:300/products
+POST https://localhost:300/api/v1/products/1
+
+###
+POST http://localhost:3000/api/v1/products
 Content-Type: application/json
 some-other-header: with my vey personal information
 
@@ -29,7 +32,7 @@ some-other-header: with my vey personal information
 }
 
 ###
-DELETE http://localhost:300/products/1
+DELETE http://localhost:300/api/v1/products/1
 
 ###
-GET http://localhost:3000/products/search/bridge
+GET http://localhost:3000/api/v1/products/search/bridge
