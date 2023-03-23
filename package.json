@@ -9,9 +9,13 @@
       "url": "git+https://github.com/virimarinh/Web-Dev-Spring2023.git"
     },
     "private": true,
+	  "workspace":[
+      "client"
+  ],
   
     "scripts": {
-      "start": "node server/index.js", 
+      "build": "npm i -ws && npm run build -ws",
+      "start": "node server/index.js",
       "dev": "nodemon server/index.js --watch server"
   },
 
