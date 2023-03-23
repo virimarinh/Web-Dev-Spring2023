@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const products = require('./controllers/products')
 const app = express()
 
@@ -6,8 +7,10 @@ const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.
-    use(express.json());
+app
+    .use(express.json())
+    .use(express.static(path.join(__dirname, '../client/dist')))
+
 
 // Actions
 app
