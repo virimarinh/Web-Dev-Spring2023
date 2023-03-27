@@ -1,10 +1,10 @@
 const data = require('../data/products.json');
 
 function getProducts() {
-    return data.products;
+  return data.products;
 }
 
-function getProductsById(id) {
+function getProductById(id) {
     return data.products.find(product => product.id === id);
 }
 
@@ -13,8 +13,13 @@ function addProduct(product) {
     data.products.push(product);
 }
 
-function updateProduct(product){
+function updateProduct(product) {
     const index = data.products.findIndex(p => p.id === product.id);
+    data.products[index] = product;
+}
+
+function deleteProduct(id) {
+    const index = data.products.findIndex(p => p.id === id);
     data.products.splice(index, 1);
 }
 
