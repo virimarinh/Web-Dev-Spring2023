@@ -2,7 +2,7 @@ const express = require('express');
 const model = require('../models/products');
 const router = express.Router();
 
-router 
+router
     .get('/', (req, res) => {
         const list = model.getProducts();
         res.send(list)
@@ -15,9 +15,9 @@ router
         res.send(list);
     })
 
-    .get('/:id', (ref, res) => {
-        const id = +req.params.q;
-        const product = model.getProductsById(id);
+    .get('/:id', (req, res) => {
+        const id = +req.params.id;
+        const product = model.getProductById(id);
         res.send(product);
     })
 
@@ -39,13 +39,13 @@ router
         res.send(product);
     })
 
-    .delete('//:id', (req, res) => {
+    .delete('/:id', (req, res) => {
         const id = +req.params.id;
         model.deleteProduct(id);
         res.send({id});
     })
 
-    module.exports = router;
+module.exports = router;
 
 /*  Ways to pass information to the server:
     1. Query String Parameters
