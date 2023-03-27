@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import { quantity } from '../model/cart';
 import Cart from './Cart.vue';
 import Flyout from './Flyout.vue';
-import LoginBadge from './LoginBadge.vue';
+
     const isMenuActive = ref(false);
     const isCartActive = ref(false);
     function toggleMenu() {
