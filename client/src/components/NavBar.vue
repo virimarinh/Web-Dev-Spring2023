@@ -4,7 +4,8 @@ import { RouterLink } from 'vue-router';
 import { quantity } from '../model/cart';
 import Cart from './Cart.vue';
 import Flyout from './Flyout.vue';
-
+import LoginBadge from './loginBadge.vue';
+import Notifications from './Notification.vue';
     const isMenuActive = ref(false);
     const isCartActive = ref(false);
     function toggleMenu() {
@@ -71,6 +72,7 @@ import Flyout from './Flyout.vue';
           <div class="navbar-end">
 
             <div class="navbar-item">
+                <Notifications />
                 <button class="button  is-primary" :class="{ 'is-active': isCartActive }" @click="isCartActive = !isCartActive">
                     <span class="icon">
                         <i class="fas fa-shopping-cart"></i>
