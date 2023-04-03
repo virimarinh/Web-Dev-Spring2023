@@ -31,8 +31,21 @@ app
 // Catch all
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-})('*', )
-app.get
+})
+
+// Error handling
+app
+    .use((err, req, res, next) => {
+        console.error(err);
+        const msg = {
+            status: err.code || 500,
+            error: err.message || 'Internal Server Error',
+            isSuccess: false
+        }
+        res.status(msg.status).json(msg)
+    })
+
+
 console.log('1: About to start server')
 
 app.listen(port, () => 
@@ -40,4 +53,3 @@ app.listen(port, () =>
 );
 
 console.log('3: Asked server to start')
-
