@@ -1,6 +1,10 @@
+
+ 
+
 /*  B"H
 */
 
+import type { DataListEnvelope } from "./myFetch";
 import { api } from "./session";
 
 export interface Product {
@@ -17,6 +21,8 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts(): Promise<Product[]> {
-    return api.products;
+export function getProducts(): Promise<DataListEnvelope<Product>> {
+
+    return api('products')
+
 }

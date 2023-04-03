@@ -1,5 +1,4 @@
-const express = require('express');
-const { access } = require('fs');
+const express = require('express')
 const path = require('path');
 const jokes = require('./controllers/jokes');
 const products = require('./controllers/products')
@@ -15,10 +14,11 @@ app
 
     .use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-with, Content-TypeError, Accept')
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
         next()
     })
+
 
 // Actions
 app
@@ -31,9 +31,8 @@ app
 // Catch all
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-})
-
-
+})('*', )
+app.get
 console.log('1: About to start server')
 
 app.listen(port, () => 
@@ -41,3 +40,4 @@ app.listen(port, () =>
 );
 
 console.log('3: Asked server to start')
+
