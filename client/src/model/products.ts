@@ -1,10 +1,7 @@
-
- 
-
 /*  B"H
 */
 
-import type { DataListEnvelope } from "./myFetch";
+import type { DataEnvelope, DataListEnvelope } from "./myFetch";
 import { api } from "./session";
 
 export interface Product {
@@ -25,4 +22,12 @@ export function getProducts(): Promise<DataListEnvelope<Product>> {
 
     return api('products')
 
+}
+
+export function getProduct(id: number): Promise<DataEnvelope<Product>> {
+    return api('products/${id}')
+}
+
+export function createProduct(product: Product): Promise<DataEnvelope<Product>> {
+    return api('products', product)
 }
