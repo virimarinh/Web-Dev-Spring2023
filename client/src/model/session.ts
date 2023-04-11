@@ -12,6 +12,7 @@ const session = reactive({
         msg: string,
         type: "success" | "danger" | "warning" | "info",
     }[],
+    redirectUrl: null as string | null,
 })
 
 interface User {
@@ -41,9 +42,15 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
         })
 }
 
-export function login() {
-    session.user = {
-        name: "John Doe",
+export function useLogin(){
+    const router = useRouter();
+
+    return function() {
+        session.user = {
+            name: "John Doe",
+        }
+
+        router.push(session.redirectUrl ?? "/");
     }
 }
 
@@ -55,6 +62,7 @@ export function useLogout() {
         session.user = null;
 
         router.push("/login");
+        session.redirectUrl = null;
     }
 }
 
