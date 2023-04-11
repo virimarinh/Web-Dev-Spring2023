@@ -3,16 +3,30 @@
 import type { Product } from '@/model/products';
 import { ref } from 'vue'; 
 import { useRoute } from 'vue-router';
-import { getProduct} from '@/model/products';
+import { getProduct, createProduct} from '@/model/products';
+import { useSession, addMessage } from '@/model/session';
+
+    const session = useSession();
+    const route = useRoute();
 
     const product = ref<Product>({}as Product);
-    const route = useRoute();
 
     getProduct(+route.params.id).then((data) => {
         product.value = data.data;
+        product.value = data.data ?? {} as Product;
+        console.log(product.value)
     })
 
-    function save(){}
+    function save(){
+        if(product.value.id){
+            console.log('update')
+        } else {
+            createProduct(product.value).then((data) => {
+                console.log(data)
+                addMessage('Product created', 'success')
+            })
+        }
+    }
 </script>
 
 <template>
