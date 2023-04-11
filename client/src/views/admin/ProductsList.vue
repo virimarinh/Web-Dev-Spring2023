@@ -37,7 +37,7 @@ getProducts().then((data) => {
                     <td>{{ product.title }}</td>
                     <td>{{ product.price }}</td>
                     <td>{{ product.category }}</td>
-                    <td>{{ product.stock }}</td>
+                    <td>{{ product.stock }} / {{ product.brand }}</td>
                     <td>
                         <router-link :to="'/admin/products/edit/' + product.id" class="button" >
                                 <div class="icon">

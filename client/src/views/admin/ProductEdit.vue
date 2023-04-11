@@ -3,35 +3,20 @@
 import type { Product } from '@/model/products';
 import { ref } from 'vue'; 
 import { useRoute } from 'vue-router';
-import { getProduct, createProduct } from '@/model/products';
-import { useSession, addMessage } from '@/model/session';
+import { getProduct} from '@/model/products';
 
-const session = useSession();
-const route = useRoute();
+    const product = ref<Product>({}as Product);
+    const route = useRoute();
 
-const product = ref<Product>({} as Product);
-
-
-getProduct(+route.params.id).then((data) => {
-        product.value = data.data ?? {} as Product;
-        console.log(product.value)
+    getProduct(+route.params.id).then((data) => {
+        product.value = data.data;
     })
 
-function save() {
-    if(product.value.id){
-        console.log('update')
-    } else {
-        createProduct(product.value).then((data) => {
-            console.log(data)
-            addMessage('Product created', 'success')
-        })
-    }
-}
-
+    function save(){}
 </script>
 
 <template>
-    <form class="admin-product-edit">
+    <form class="admin-product-edit" @submit.prevent="save()">
         <h1 class="title" v-if="product.id">Edit Product</h1>
         <h1 class="title" v-else>Add New Product</h1>
         <div class="field">
