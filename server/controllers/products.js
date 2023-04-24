@@ -4,9 +4,11 @@ const router = express.Router();
 
 router
     .get('/', (req, res) => {
-        const list = model.getProducts();
-        const data = { data: list, total: list.length, isSuccess: true };
-        res.send(data)
+        model.getProducts()
+        .then(list => {
+            const data = { data: list, total: list.length, isSuccess: true };
+            res.send(data)
+        }).catch(next)
     })
 
     .get('/search/:q', (req, res) => {

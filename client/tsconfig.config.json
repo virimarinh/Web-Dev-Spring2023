@@ -4,5 +4,7 @@
   "compilerOptions": {
     "composite": true,
     "types": ["node"]
-  }
+  },
+  "lib": ["ES2020","DOM"],
+  "verbatimModuleSyntax": "5.0"
 }
