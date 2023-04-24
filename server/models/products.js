@@ -1,29 +1,39 @@
 const data = require('../data/products.json');
+const { connect, ObjectId } = require('./mongo');
 
-function getProducts() {
-  return data.products;
+const COLLECTION_NAME = 'Products';
+
+async function collection() {
+    const db = await connect();
+    return db.collection(COLLECTION_NAME);
 }
 
-function getProductById(id) {
+async function getAll() {
+    const col = await collection();
+    const items = await col.find().toArray();
+    return items;
+}
+
+function getById(id) {
     return data.products.find(product => product.id === id);
 }
 
-function addProduct(product) {
-    product.id = data.products.length + 1;
-    data.products.push(product);
+function add(item) {
+    item.id = data.products.length + 1;
+    data.products.push(item);
 }
 
-function updateProduct(product) {
-    const index = data.products.findIndex(p => p.id === product.id);
-    data.products[index] = product;
+function update(item) {
+    const index = data.products.findIndex(p => p.id === item.id);
+    data.products[index] = item;
 }
 
-function deleteProduct(id) {
+function deleteItem(id) {
     const index = data.products.findIndex(p => p.id === id);
     data.products.splice(index, 1);
 }
 
-function searchProducts(searchTerm) {
+function search(searchTerm) {
     return data.products.filter(product => {
         return  product.title.toLowerCase().includes(searchTerm.toLowerCase())  ||
             product.description.toLowerCase().includes(searchTerm.toLowerCase())  ||
@@ -32,10 +42,10 @@ function searchProducts(searchTerm) {
 }
 
 module.exports = {
-    getProducts,
-    getProductById,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    searchProducts
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem, 
+    search
 };
