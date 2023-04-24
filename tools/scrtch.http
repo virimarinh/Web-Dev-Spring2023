@@ -1,14 +1,14 @@
 ###
-GET http://localhost:300/
+GET http://localhost:3070/
 
 ###
-GET http://localhost:300/api/v1/products
+GET http://localhost:3070/api/v1/products?page=2&pageSize=30
 
 ###
-POST https://localhost:300/api/v1/products/1
+POST https://localhost:3070/api/v1/products/64418de0f09282c0f7970ba7
 
 ###
-POST http://localhost:3000/api/v1/products
+POST http://localhost:3070/api/v1/products
 Content-Type: application/json
 some-other-header: with my vey personal information
 
@@ -32,7 +32,21 @@ some-other-header: with my vey personal information
 }
 
 ###
-DELETE http://localhost:300/api/v1/products/1
+PATCH http://localhost:3070/api/v1/products
+Content-Type: application/json
+some-other-header: with my personal information
+
+{
+  "_id": "64418ffa4925ec04c2c37dd0",
+  "title": "Brooklyn Bridge 2",
+  "price": 749
+}
 
 ###
-GET http://localhost:3000/api/v1/products/search/bridge
+DELETE http://localhost:3070/api/v1/products/64418de0f09282c0f7970ba7
+
+###
+GET http://localhost:3070/api/v1/products/search/bridge
+
+###
+POST http://localhost:3070/api/v1/products/seed
