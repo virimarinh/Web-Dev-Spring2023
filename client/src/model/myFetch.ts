@@ -1,6 +1,6 @@
 /*  B"H
 */
-const API_URL = import.meta.env.VITE_API_URL ?? '/api/v1';
+const API_URL = import.meta.env.VITE_API_URL ?? '/api/v1/';
 
 export function rest(url: string, data?: any, method?: string, headers?: any){
     return fetch(url, {
@@ -11,9 +11,10 @@ export function rest(url: string, data?: any, method?: string, headers?: any){
         },
         body: data ? JSON.stringify(data) : undefined,
     })
-        .then(res => res.ok ? 
-            res.json() 
-            : res.json().then(x=> { throw({ ...x, message: x.error }) } ) );
+        .then(res => res.ok 
+            ? res.json() 
+            : res.json().then(x=> { throw({ ...x, message: x.error }) } )
+        );
 }
 
 export function api(url: string, data?: any, method?: string, headers?: any){
