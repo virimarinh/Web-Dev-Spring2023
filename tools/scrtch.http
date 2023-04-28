@@ -1,14 +1,18 @@
-###
-GET http://localhost:3070/
+@port=3070
+@jwt={{login.response.body.data.token}}
 
 ###
-GET http://localhost:3070/api/v1/products?page=2&pageSize=30
+GET http://localhost:{{{{port}}}}/
 
 ###
-POST https://localhost:3070/api/v1/products/64418de0f09282c0f7970ba7
+GET http://localhost:{{port}}/api/v1/products?page=2&pageSize=30
+Authorization: Bearer {{jwt}}
 
 ###
-POST http://localhost:3070/api/v1/products
+POST https://localhost:{{port}}/api/v1/products/64418de0f09282c0f7970ba7
+
+###
+POST http://localhost:{{port}}/api/v1/products
 Content-Type: application/json
 some-other-header: with my vey personal information
 
@@ -32,7 +36,7 @@ some-other-header: with my vey personal information
 }
 
 ###
-PATCH http://localhost:3070/api/v1/products
+PATCH http://localhost:{{port}}/api/v1/products
 Content-Type: application/json
 some-other-header: with my personal information
 
@@ -43,10 +47,26 @@ some-other-header: with my personal information
 }
 
 ###
-DELETE http://localhost:3070/api/v1/products/64418de0f09282c0f7970ba7
+DELETE http://localhost:{{port}}/api/v1/products/64418de0f09282c0f7970ba7
 
 ###
-GET http://localhost:3070/api/v1/products/search/bridge
+GET http://localhost:{{port}}/api/v1/products/search/bridge
 
 ###
-POST http://localhost:3070/api/v1/products/seed
+POST http://localhost:{{port}}/api/v1/products/seed
+
+###
+POST http://localhost:{{port}}/api/v1/users/seed
+
+###
+GET http://localhost:{{port}}/api/v1/users
+
+###
+# @name login
+POST http://localhost:{{port}}/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "john@doe.com",
+    "password": "123456"
+}

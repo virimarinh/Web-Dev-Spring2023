@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path');
 const jokes = require('./controllers/jokes');
 const products = require('./controllers/products')
+const users = require('./controllers/users')
+const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization')
 const app = express()
 
 const hostname = '127.0.0.1';
@@ -20,7 +22,8 @@ app
         next()
     })
 
-
+    .use(parseAuthorizationHeader)
+    
 // Actions
 app
     .get('/api/v1/', (req, res) => {
