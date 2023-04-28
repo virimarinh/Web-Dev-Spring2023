@@ -4,7 +4,8 @@ const path = require('path');
 const jokes = require('./controllers/jokes');
 const products = require('./controllers/products')
 const users = require('./controllers/users')
-const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization')
+const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization');
+const authorization = require('./middleware/authorization');
 const app = express()
 
 const hostname = '127.0.0.1';
@@ -15,15 +16,16 @@ app
     .use(express.json())
     .use(express.static(path.join(__dirname, '../client/dist')))
 
+    // CORS
     .use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
         next()
     })
 
     .use(parseAuthorizationHeader)
-    
+
 // Actions
 app
     .get('/api/v1/', (req, res) => {

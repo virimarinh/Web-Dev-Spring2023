@@ -29,6 +29,14 @@ export function useSession() {
 
 export function api(url: string, data?: any, method?: string, headers?: any) {
     session.isLoading = true;
+
+    if(session.user?.token){
+        headers = {
+            "Authorization": 'Bearer ${session.user.token}',
+            ...headers,
+        }
+    }
+
     return myFetch.api(url, data, method, headers)
         .catch(err => {
             console.error({err});
@@ -45,10 +53,18 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
 export function useLogin(){
     const router = useRouter();
 
-    return function() {
-        session.user = {
-            name: "John Doe",
+    return async function() {
+        const response = await api("users/login", {
+            "email": "john@doe,com", 
+            "password": "123456d"
+        });
+
+        session.user = response.data.user;
+        if(!session.user){
+            addMessage("User not found", "danger");
+            return;
         }
+        session.user.token = response.data.token;
 
         router.push(session.redirectUrl ?? "/");
     }
