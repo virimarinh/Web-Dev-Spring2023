@@ -61,7 +61,7 @@ router
             }).catch(next);
     })
 
-    .post('/seed', requireLogin(true) ,(req, res, next) => {
+    .post('/seed', (req, res, next) => {
         model.seed()
             .then(x => {
                 const data = { data: x, isSuccess: true };
