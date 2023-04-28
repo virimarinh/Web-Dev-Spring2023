@@ -5,7 +5,6 @@ const jokes = require('./controllers/jokes');
 const products = require('./controllers/products')
 const users = require('./controllers/users')
 const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization');
-const authorization = require('./middleware/authorization');
 const app = express()
 
 const hostname = '127.0.0.1';
@@ -21,6 +20,11 @@ app
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+        // Make sure OPTIONS request are always allowed
+        // That way pre-flight requests dont fail
+        if(req.method === 'OPTIONS') {
+            return res.status(200).send({})
+        }
         next()
     })
 
