@@ -6,8 +6,10 @@ import Cart from './Cart.vue';
 import Flyout from './Flyout.vue';
 import LoginBadge from './loginBadge.vue';
 import Notifications from './Notification.vue';
+
     const isMenuActive = ref(false);
     const isCartActive = ref(false);
+
     function toggleMenu() {
         isMenuActive.value = !isMenuActive.value;
         console.log({ isMenuActive });
@@ -36,6 +38,7 @@ import Notifications from './Notification.vue';
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
             <RouterLink to="/products" class="navbar-item">Products</RouterLink>
+            <RouterLink to="/storeLocations" class="navbar-item">Locations</RouterLink>
 
 
             <div class="navbar-item has-dropdown is-hoverable">
@@ -49,6 +52,7 @@ import Notifications from './Notification.vue';
                 <RouterLink class="navbar-item" to="/admin/users">
                   Users
                 </RouterLink>
+                
               </div>
             </div>
           </div>

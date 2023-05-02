@@ -59,7 +59,7 @@ export function useLogin() {
             "password": "123456"
         });
 
-        session.user = response.data.user.users;
+        session.user = response.data.user;
         if(!session.user) {
             addMessage("User not found", "danger");
             return;

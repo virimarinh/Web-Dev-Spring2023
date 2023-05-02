@@ -8,8 +8,8 @@ module.exports = {
                 .then(user => {
                     req.user = user;
                     next();
-                }).catch(err => {
-                    next({ code: 401, message: err});
+                }).catch(err=> {
+                    next({ code: 401, message: err });
                 });
         }else{
             next();
@@ -17,16 +17,14 @@ module.exports = {
     },
     requireLogin(requireAdmin = false) {
         return (req, res, next) => {
-            if(req.user) {
-                if (req.user) {
-                    if (req.user.role !== 'admin' && !requireAdmin) {
-                        next({ code: 403, message: 'This resource is admin only' });
-                    } else {
-                        next();
-                    }
+            if (req.user) {
+                if (req.user.role !== 'admin' && !requireAdmin) {
+                    next({ code: 403, message: 'This resource is admin only' });
                 } else {
-                    next({ code: 401, message: 'You must be logged in to access this resource' });
+                    next();
                 }
+            } else {
+                next({ code: 401, message: 'You must be logged in to access this resource' });
             }
         };
     }

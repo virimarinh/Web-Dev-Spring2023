@@ -35,9 +35,9 @@ async function update(item) {
     console.log(item);
     const col = await collection();
     const result = await col.findOneAndUpdate(
-        { _id: new ObjectId(item._id) },
+        { _id: new ObjectId(item.id) },
         { $set: item },
-        { returnDocument: 'after'}
+        { returnDocument: 'after' }
     );
 
     return result.value;
@@ -55,18 +55,18 @@ async function search(searchTerm, page = 1, pageSize = 30) {
         $or: [
             { title: { $regex: searchTerm, $options: 'i' } },
             { description: { $regex: searchTerm, $options: 'i' } },
-            { brad: { $regex: searchTerm,$options: 'i'} }
+            { brand: { $regex: searchTerm, $options: 'i' } }
         ]
     };
 
-    const item = await col.find(query).skip((page - 1) * pageSize).limit(pageSize).toArray();
+    const items = await col.find(query).skip((page - 1) * pageSize).limit(pageSize).toArray();
     const total = await col.countDocuments(query);
-    return { item, total };
-} 
+    return { items, total };
+}
 
 async function seed() {
     const col = await collection();
-    const result = await col.insertMany(data.products)
+    const result = await col.insertMany(data.products);
     return result.insertedCount;
 }
 
@@ -75,7 +75,7 @@ module.exports = {
     getById,
     add,
     update,
-    deleteItem, 
+    deleteItem,
     search,
     seed,
 };

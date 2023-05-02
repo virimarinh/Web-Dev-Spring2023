@@ -19,8 +19,9 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
-    { path: '/admin/products', name: 'admin-products', component: () => import('../views/admin/ProductsList.vue'), beforeEnter: secureRoute },
-    { path: '/admin/products/edit/:id?', name: 'admin-products-edit', component: () => import('../views/admin/ProductEdit.vue'), beforeEnter: secureRoute },
+    { path: '/storeLocations', name: 'store-locations', component: () => import('../views/StoreLocations.vue') },
+    { path: '/admin/products', name: 'admin-products', component: () => import('../views/admin/ProductsList.vue') },
+    { path: '/admin/products/edit/:id?', name: 'admin-products-edit', component: () => import('../views/admin/ProductEdit.vue') },
   ]
 })
 
@@ -31,9 +32,9 @@ function secureRoute (to : RouteLocationNormalized, from : RouteLocationNormaliz
     if (session.user) {
         next()
     } else { 
-      if(!session.redirectUrl && to.path != '/login'){
-        session.redirectUrl = to.fullPath;
-      }
+        if(!session.redirectUrl && to.path != '/login') {
+            session.redirectUrl = to.fullPath;
+        }
         next('/login')
     }
 }
