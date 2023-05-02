@@ -2,19 +2,19 @@
 @jwt={{login.response.body.data.token}}
 
 ###
-GET http://localhost:{{{{port}}}}/
+GET http://localhost:{{port}}/
 
 ###
 GET http://localhost:{{port}}/api/v1/products?page=2&pageSize=30
 Authorization: Bearer {{jwt}}
 
 ###
-POST https://localhost:{{port}}/api/v1/products/64418de0f09282c0f7970ba7
+GET http://localhost:{{port}}/api/v1/products/64418de0f09282c0f7970ba7
 
 ###
 POST http://localhost:{{port}}/api/v1/products
 Content-Type: application/json
-some-other-header: with my vey personal information
+some-other-header: with my very personal information
 
 {
   "title": "Brooklyn Bridge",
@@ -38,10 +38,10 @@ some-other-header: with my vey personal information
 ###
 PATCH http://localhost:{{port}}/api/v1/products
 Content-Type: application/json
-some-other-header: with my personal information
+some-other-header: with my very personal information
 
 {
-  "_id": "64418ffa4925ec04c2c37dd0",
+    "_id": "64418ffa4925ec04c2c37dd0",
   "title": "Brooklyn Bridge 2",
   "price": 749
 }

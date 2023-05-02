@@ -32,7 +32,7 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
 
     if(session.user?.token){
         headers = {
-            "Authorization": 'Bearer ${session.user.token}',
+            "Authorization": `Bearer ${session.user.token}`,
             ...headers,
         }
     }
@@ -50,23 +50,24 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
         })
 }
 
-export function useLogin(){
+export function useLogin() {
     const router = useRouter();
 
     return async function() {
         const response = await api("users/login", {
-            "email": "john@doe,com", 
-            "password": "123456d"
+            "email": "john@doe.com",
+            "password": "123456"
         });
 
-        session.user = response.data.user;
-        if(!session.user){
+        session.user = response.data.user.users;
+        if(!session.user) {
             addMessage("User not found", "danger");
             return;
         }
         session.user.token = response.data.token;
 
         router.push(session.redirectUrl ?? "/");
+        session.redirectUrl = null;
     }
 }
 
@@ -78,7 +79,6 @@ export function useLogout() {
         session.user = null;
 
         router.push("/login");
-        session.redirectUrl = null;
     }
 }
 
