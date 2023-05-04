@@ -3,7 +3,6 @@ import { loadScript, rest } from '@/model/myFetch';
 async function googleLogin()
 {
     await loadScript('https://accounts.google.com/gsi/client', 'google-login');
-    //await loadScript('https://apis.google.com/js/platform.js', 'gapi');
     const client = google.accounts.oauth2.initTokenClient({
           client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
           scope: 'https://www.googleapis.com/auth/calendar.readonly \
